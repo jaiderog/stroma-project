@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principios FAIR Interactivos</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aplicar la fuente Inter como fuente principal */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para el estado activo del botón de pestaña */
+        .tab-button.active {
+            transform: scale(1.05);
+            ring-width: 4px;
+            --tw-ring-offset-width: 2px;
+            --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
+            --tw-ring-opacity: 1;
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Encabezado - Basado en la imagen -->
+    <header class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Icono SVG simulando el logo -->
+                <svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <h1 class="text-xl md:text-2xl font-bold">Gestión de Datos de Investigación</h1>
+            </div>
+            <div class="text-right">
+                <p class="text-sm font-semibold">Principios FAIR en profundidad</p>
+                <p class="text-xs text-gray-300">(8 min)</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto max-w-5xl p-4 md:p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Los Principios FAIR</h2>
+        <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            Los principios FAIR (Findable, Accessible, Interoperable, Reusable) son un conjunto de guías para la gestión de datos científicos que aseguran que sean localizables, accesibles, interoperables y reutilizables.
+        </p>
+
+        <!-- Pestañas Interactivas (Los 4 bloques) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+            
+            <!-- Botón Findable -->
+            <button id="findable-tab" class="tab-button active bg-cyan-500 text-white p-6 rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-300" onclick="showTab('findable')">
+                <span class="text-4xl font-bold">F</span>
+                <h3 class="text-lg font-bold mt-2">Findable</h3>
+                <p class="text-sm">(Localizable)</p>
+            </button>
+
+            <!-- Botón Accessible -->
+            <button id="accessible-tab" class="tab-button bg-orange-500 text-white p-6 rounded-lg shadow-md hover:bg-orange-600 transition-all duration-300" onclick="showTab('accessible')">
+                <span class="text-4xl font-bold">A</span>
+                <h3 class="text-lg font-bold mt-2">Accessible</h3>
+                <p class="text-sm">(Accesible)</p>
+            </button>
+
+            <!-- Botón Interoperable -->
+            <button id="interoperable-tab" class="tab-button bg-blue-500 text-white p-6 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300" onclick="showTab('interoperable')">
+                <span class="text-4xl font-bold">I</span>
+                <h3 class="text-lg font-bold mt-2">Interoperable</h3>
+                <p class="text-sm">(Interoperable)</p>
+            </button>
+
+            <!-- Botón Reusable -->
+            <button id="reusable-tab" class="tab-button bg-green-600 text-white p-6 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300" onclick="showTab('reusable')">
+                <span class="text-4xl font-bold">R</span>
+                <h3 class="text-lg font-bold mt-2">Reusable</h3>
+                <p class="text-sm">(Reutilizable)</p>
+            </button>
+        </div>
+
+        <!-- Contenido de las Pestañas -->
+        <div class="mt-6">
+
+            <!-- Contenido Findable (Visible por defecto) -->
+            <div id="findable-content" class="tab-content bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-cyan-500">
+                <h3 class="text-3xl font-bold text-cyan-600 mb-4">F: Findable (Localizable)</h3>
+                <p class="text-gray-700 mb-4">
+                    Los datos y metadatos deben ser fáciles de encontrar tanto para humanos como para máquinas. Esto es fundamental para cualquier reutilización futura.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>(Meta)datos con PID:</strong> Asignar identificadores persistentes y únicos (PIDs) a los datos, como un DOI (Digital Object Identifier).</li>
+                    <li><strong>Metadatos Ricos:</strong> Describir los datos con un conjunto rico de metadatos que expliquen su contexto, origen y contenido.</li>
+                    <li><strong>Indexación:</strong> Asegurar que los metadatos estén indexados en un repositorio o recurso de búsqueda.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
+                <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
+                    <p class="text-gray-700">Un conjunto de datos sobre el clima publicado en el repositorio Zenodo. Se le asigna automáticamente un <strong>DOI</strong>. Los metadatos incluyen autores (con sus <strong>ORCIDs</strong>), palabras clave, descripción del conjunto de datos y cobertura geográfica.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Accessible (Oculto) -->
+            <div id="accessible-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-orange-500">
+                <h3 class="text-3xl font-bold text-orange-600 mb-4">A: Accessible (Accesible)</h3>
+                <p class="text-gray-700 mb-4">
+                    Una vez que el usuario encuentra los datos, necesita saber cómo puede acceder a ellos, posiblemente incluyendo autenticación y autorización.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Protocolos Estándar:</strong> Los (meta)datos deben ser recuperables por su identificador usando un protocolo de comunicación estándar (ej. HTTPS).</li>
+                    <li><strong>Abierto vs. Cerrado:</strong> El protocolo debe ser abierto, gratuito y universalmente implementable.</li>
+                    <li><strong>Gestión de Acceso:</strong> "Tan abierto como sea posible, tan cerrado como sea necesario". Si los datos no pueden ser abiertos (ej. datos sensibles), las condiciones de acceso deben estar claramente definidas.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
+                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                    <p class="text-gray-700">Unos datos públicos se pueden descargar directamente mediante un enlace <strong>HTTPS</strong>. Para datos clínicos sensibles, el repositorio explica que se debe <strong>solicitar acceso</strong> a un comité de ética, y el acceso se concede a través de un portal seguro con login.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Interoperable (Oculto) -->
+            <div id="interoperable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-blue-500">
+                <h3 class="text-3xl font-bold text-blue-600 mb-4">I: Interoperable</h3>
+                <p class="text-gray-700 mb-4">
+                    Los datos deben poder combinarse con otros datos e interactuar con aplicaciones o flujos de trabajo para su análisis y procesamiento.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Formatos Estándar:</strong> Usar formatos de archivo abiertos, bien documentados y preferiblemente no propietarios (ej. CSV, JSON, netCDF).</li>
+                    <li><strong>Vocabularios Controlados:</strong> Usar vocabularios, ontologías o tesauros estándar para describir las variables y metadatos (ej. Dublin Core, Darwin Core).</li>
+                    <li><strong>Referencias Claras:</strong> Los metadatos deben incluir referencias calificadas a otros (meta)datos.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <p class="text-gray-700">En lugar de guardar mediciones en un archivo <code>.xlsx</code> con cabeceras ambiguas como "Temp.", se guardan en <strong>CSV</strong>. Un archivo "readme" especifica que la columna "temperatura_celsius" usa unidades de <strong>(ISO 80000-5)</strong> y que las especies se nombran según el vocabulario <strong>Darwin Core (DwC)</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Reusable (Oculto) -->
+            <div id="reusable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-green-600">
+                <h3 class="text-3xl font-bold text-green-700 mb-4">R: Reusable (Reutilizable)</h3>
+                <p class="text-gray-700 mb-4">
+                    El objetivo final de FAIR es optimizar la reutilización de los datos. Para ello, los metadatos y los datos deben estar bien descritos para que puedan replicarse o combinarse en diferentes estudios.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Licencias Claras:</strong> Los datos deben tener una licencia de uso clara y accesible (ej. Creative Commons, MIT).</li>
+                    <li><strong>Documentación y Procedencia:</strong> Proveer documentación detallada sobre cómo se generaron los datos (procedencia o *provenance*), incluyendo el software y los métodos utilizados.</li>
+                    <li><strong>Estándares Comunitarios:</strong> Los (meta)datos cumplen con los estándares relevantes de la comunidad o dominio.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <p class="text-gray-700">Un conjunto de imágenes de galaxias se publica con una licencia <strong>Creative Commons CC BY 4.0</strong>, permitiendo su uso por cualquiera siempre que se cite la fuente. Se adjunta un archivo <code>README.md</code> que describe el telescopio utilizado, la configuración de la cámara y los pasos de procesamiento (software y versión) aplicados a cada imagen.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Mantiene un registro de la pestaña activa actualmente
+        let currentTab = 'findable';
+
+        function showTab(tabName) {
+            // Si ya está activa, no hacer nada
+            if (tabName === currentTab) {
+                return;
+            }
+
+            // Ocultar el contenido de la pestaña anterior
+            const oldContent = document.getElementById(currentTab + '-content');
+            if (oldContent) {
+                oldContent.classList.add('hidden');
+            }
+
+            // Quitar el estilo activo de la pestaña anterior
+            const oldTabButton = document.getElementById(currentTab + '-tab');
+            if (oldTabButton) {
+                oldTabButton.classList.remove('active');
+            }
+
+            // Mostrar el contenido de la nueva pestaña
+            const newContent = document.getElementById(tabName + '-content');
+            if (newContent) {
+                newContent.classList.remove('hidden');
+            }
+
+            // Añadir el estilo activo a la nueva pestaña
+            const newTabButton = document.getElementById(tabName + '-tab');
+            if (newTabButton) {
+                newTabButton.classList.add('active');
+            }
+
+            // Actualizar la pestaña actual
+            currentTab = tabName;
+        }
+    </script>
+
+</body>
+</html>
