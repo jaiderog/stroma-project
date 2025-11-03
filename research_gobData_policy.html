@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobernanza de Datos de Investigación</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Aplicar la fuente Inter como fuente principal */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para el estado activo del botón de pestaña */
+        .tab-button.active {
+            transform: scale(1.05);
+            ring-width: 4px;
+            --tw-ring-offset-width: 2px;
+            --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
+            --tw-ring-opacity: 1;
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Encabezado - Estilo consistente -->
+    <header class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Icono SVG simulando el logo -->
+                <svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <h1 class="text-xl md:text-2xl font-bold">Gestión de Datos de Investigación</h1>
+            </div>
+            <div class="text-right">
+                <p class="text-sm font-semibold">Política de Gobernanza de Datos</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Pilares de la gobernanza de datos</h2>
+        <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+            Una política de gobernanza de datos define el marco de reglas, responsabilidades y procesos para asegurar la calidad, seguridad, sostenibilidad y uso ético de los datos de investigación a nivel institucional.
+        </p>
+
+        <!-- Pestañas Interactivas (Los 6 bloques) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8">
+            
+            <!-- Botón Gobernanza -->
+            <button id="gobernanza-tab" class="tab-button active bg-blue-600 text-white p-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300" onclick="showTab('gobernanza')">
+                <h3 class="text-lg font-bold">Gobernanza</h3>
+                <p class="text-sm">(Estrategia y autoridad)</p>
+            </button>
+
+            <!-- Botón Tecnología -->
+            <button id="tecnologia-tab" class="tab-button bg-slate-600 text-white p-6 rounded-lg shadow-md hover:bg-slate-700 transition-all duration-300" onclick="showTab('tecnologia')">
+                <h3 class="text-lg font-bold">Tecnología</h3>
+                <p class="text-sm">(Arquitectura y ciclo de vida)</p>
+            </button>
+
+            <!-- Botón Cultura y Capacitación -->
+            <button id="cultura-tab" class="tab-button bg-purple-600 text-white p-6 rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300" onclick="showTab('cultura')">
+                <h3 class="text-lg font-bold">Cultura y capacitación</h3>
+                <p class="text-sm">(Adopción e incentivos)</p>
+            </button>
+            
+            <!-- Botón Ética y Legal -->
+            <button id="etica-tab" class="tab-button bg-red-600 text-white p-6 rounded-lg shadow-md hover:bg-red-700 transition-all duration-300" onclick="showTab('etica')">
+                <h3 class="text-lg font-bold">Ética y legal</h3>
+                <p class="text-sm">(Cumplimiento y riesgo)</p>
+            </button>
+
+            <!-- Botón Sostenibilidad -->
+            <button id="sostenibilidad-tab" class="tab-button bg-green-600 text-white p-6 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300" onclick="showTab('sostenibilidad')">
+                <h3 class="text-lg font-bold">Sostenibilidad</h3>
+                <p class="text-sm">(Recursos y financiación)</p>
+            </button>
+            
+            <!-- Botón Monitoreo -->
+            <button id="monitoreo-tab" class="tab-button bg-amber-600 text-white p-6 rounded-lg shadow-md hover:bg-amber-700 transition-all duration-300" onclick="showTab('monitoreo')">
+                <h3 class="text-lg font-bold">Monitoreo</h3>
+                <p class="text-sm">(Evaluación y mejora)</p>
+            </button>
+
+            <!-- Botón Ejemplos (Nuevo) -->
+            <button id="ejemplos-tab" class="tab-button bg-teal-600 text-white p-6 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300" onclick="showTab('ejemplos')">
+                <h3 class="text-lg font-bold">Ejemplos y recursos</h3>
+                <p class="text-sm">(Marcos y políticas)</p>
+            </button>
+
+        </div>
+
+        <!-- Contenido de las Pestañas -->
+        <div class="mt-6">
+
+            <!-- Contenido Gobernanza (Visible por defecto) -->
+            <div id="gobernanza-content" class="tab-content bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-blue-600">
+                <h3 class="text-3xl font-bold text-blue-700 mb-4">Gobernanza: estrategia y autoridad</h3>
+                <p class="text-gray-700 mb-4">
+                    Define el marco de autoridad y los procesos para la toma de decisiones. Es el pilar central que establece <i>por qué</i> (los fines) y <i>quién</i> (la autoridad) supervisa el ciclo de vida de los datos.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Fines y objetivos institucionales:</strong> Definir explícitamente el propósito estratégico, que puede incluir la promoción del reúso, la garantía de preservación y el aseguramiento del cumplimiento normativo.</li>
+                    <li><strong>Órganos de gobierno:</strong> Establecimiento del Comité de Gobernanza de Datos como autoridad máxima para la toma de decisiones y aprobación de políticas.</li>
+                    <li><strong>Gestión de stakeholders:</strong> Mapeo y participación activa de las partes interesadas (investigadores, TI, legal, biblioteca) en los procesos de decisión.</li>
+                    <li><strong>Marco de roles y responsabilidades:</strong> Definición formal de roles con autoridad como <i>Data Owners</i> (propietarios), <i>Data Stewards</i> (custodios) y <i>Data Custodians</i> (técnicos).</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <p class="text-gray-700">La gobernanza es el <strong>sistema de reglas, prácticas e instituciones</strong> para tomar, ejecutar y supervisar decisiones sobre los datos. Define la autoridad, no solo las tareas, asegurando transparencia y rendición de cuentas.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Tecnología (Oculto) -->
+            <div id="tecnologia-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-slate-600">
+                <h3 class="text-3xl font-bold text-slate-700 mb-4">Tecnología: arquitectura y ciclo de vida</h3>
+                <p class="text-gray-700 mb-4">
+                    Establece los estándares y la infraestructura para la gestión técnica de los datos en todas sus fases, desde la ingesta hasta la preservación.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Arquitectura y repositorios:</strong> Criterios para la selección, certificación y federación de repositorios, sistemas CRIS y plataformas de cómputo, incluyendo soluciones de alto rendimiento (HPC) o en la nube.</li>
+                    <li><strong>Estándares (DMPs e interoperabilidad):</strong> Definición de protocolos técnicos, metadatos y plantillas para Planes de Gestión de Datos (DMPs) que aseguren la interoperabilidad (FAIR).</li>
+                    <li><strong>Estrategia de preservación digital:</strong> Políticas y acciones técnicas para garantizar la integridad y accesibilidad a largo plazo, mediante la definición de formatos de archivo y estrategias de almacenamiento.</li>
+                    <li><strong>Vigilancia y prospectiva tecnológica:</strong> Proceso formal para la evaluación, pilotaje y adopción de tecnologías emergentes, como la inteligencia artificial o el análisis de Big Data, alineándolas a la gobernanza.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <p class="text-gray-700">La gobernanza define <strong>los requisitos funcionales y no funcionales</strong> (seguridad, interoperabilidad) que la arquitectura tecnológica debe cumplir para soportar el ciclo de vida del dato.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Cultura y Capacitación (Oculto) -->
+            <div id="cultura-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-purple-600">
+                <h3 class="text-3xl font-bold text-purple-700 mb-4">Cultura y capacitación: adopción e incentivos</h3>
+                <p class="text-gray-700 mb-4">
+                    Se enfoca en el componente humano de la gobernanza: asegurar que el personal investigador y de apoyo comprenda, valore y cumpla las políticas.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Fomento de la cultura de datos:</strong> Promoción activa del valor de los datos como activo institucional y fomento de prácticas FAIR.</li>
+                    <li><strong>Alfabetización de datos (Data Literacy):</strong> Programas de capacitación continua sobre la política, gestión técnica y aspectos éticos-legales.</li>
+                    <li><strong>Servicios de soporte:</strong> Estructura de apoyo centralizada, como bibliotecarios de datos y curadores, para asistir a los investigadores.</li>
+                    <li><strong>Incentivos y reconocimiento:</strong> Mecanismos formales, tales como su integración en las evaluaciones de carrera, que reconozcan y recompensen las buenas prácticas de gestión de datos.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                    <p class="text-gray-700">La gobernanza no funciona si la gente no la entiende. Este pilar asegura que las reglas <strong>se internalicen en las prácticas de investigación</strong> y que el cumplimiento sea visto como un habilitador, no como una carga.</p>
+                </div>
+            </div>
+            
+            <!-- Contenido Ética y Legal (Oculto) -->
+            <div id="etica-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-red-600">
+                <h3 class="text-3xl font-bold text-red-700 mb-4">Ética y legal: cumplimiento y riesgo</h3>
+                <p class="text-gray-700 mb-4">
+                    Define el marco para el cumplimiento normativo y la gestión de riesgos asociados a los datos, especialmente los sensibles.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Cumplimiento normativo (Compliance):</strong> Políticas para asegurar el cumplimiento estricto de leyes de protección de datos (como GDPR) y otras regulaciones sectoriales.</li>
+                    <li><strong>Clasificación y tratamiento de datos sensibles:</strong> Protocolos para la clasificación de datos (pública, interna, confidencial) y su gestión, aplicando técnicas como la anonimización y el acceso controlado.</li>
+                    <li><strong>Soberanía y propiedad intelectual:</strong> Directrices claras sobre la propiedad, licenciamiento (utilizando estándares como Creative Commons) y soberanía del dato, definiendo dónde reside y quién lo controla.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <p class="text-gray-700">Se centra en <strong>minimizar el riesgo institucional</strong>. Establece las líneas rojas que no se pueden cruzar y los procesos de aprobación (ej. Comités de Ética) que son obligatorios para proteger tanto a los sujetos de estudio como a la institución.</p>
+                </div>
+            </div>
+            
+            <!-- Contenido Sostenibilidad (Oculto) -->
+            <div id="sostenibilidad-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-green-600">
+                <h3 class="text-3xl font-bold text-green-700 mb-4">Sostenibilidad: recursos y financiación</h3>
+                <p class="text-gray-700 mb-4">
+                    Asegura la viabilidad a largo plazo de la política de gobernanza y de los propios datos, garantizando que los recursos (humanos y financieros) estén disponibles.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Modelos de financiación:</strong> Definición de modelos de costes y fuentes de financiación, ya sean centralizadas o por proyecto, para la gestión del ciclo de vida del dato.</li>
+                    <li><strong>Dotación de recursos humanos:</strong> Asignación presupuestaria para roles especializados y permanentes (curadores, gestores de datos, bibliotecarios).</li>
+                    <li><strong>Dotación de infraestructura:</strong> Garantía de financiación recurrente para los costes de almacenamiento, licenciamiento de software y preservación a largo plazo.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <p class="text-gray-700">La gobernanza fracasa sin sostenibilidad. Este pilar <strong>asegura el compromiso institucional</strong> más allá del papel, asignando los recursos necesarios para que la preservación y la gestión de datos sean una realidad a largo plazo.</p>
+                </div>
+            </div>
+            
+            <!-- Contenido Monitoreo (Oculto) -->
+            <div id="monitoreo-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-amber-600">
+                <h3 class="text-3xl font-bold text-amber-700 mb-4">Monitoreo y evaluación</h3>
+                <p class="text-gray-700 mb-4">
+                    Establece los mecanismos para asegurar que la política de gobernanza se está cumpliendo y que está funcionando como se esperaba.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Elementos clave:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong>Auditoría y aseguramiento de calidad (QA):</strong> Revisiones periódicas y sistemáticas para verificar la calidad del dato, la completitud de metadatos y el cumplimiento de políticas.</li>
+                    <li><strong>Métricas y KPIs:</strong> Definición de indicadores clave de rendimiento (KPIs), tales como la tasa de adopción de repositorios, el porcentaje de datasets FAIR o el número de incidentes de seguridad.</li>
+                    <li><strong>Mejora continua y auditoría de la política:</strong> Un ciclo de vida para la propia política, asegurando su revisión y actualización periódica para adaptarse a nuevas tecnologías y normativas.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Perspectiva de gobernanza:</h4>
+                <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                    <p class="text-gray-700">La gobernanza requiere <strong>verificación y rendición de cuentas</strong>. Este pilar asegura que las reglas no solo existan en el papel, sino que se apliquen activamente y que haya un ciclo de mejora continua.</p>
+                </div>
+            </div>
+
+            <!-- Contenido Ejemplos (Nuevo) -->
+            <div id="ejemplos-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-teal-600">
+                <h3 class="text-3xl font-bold text-teal-700 mb-4">Ejemplos y recursos</h3>
+                <p class="text-gray-700 mb-4">
+                    La implementación de una política de gobernanza integral es un proceso evolutivo. A continuación, se presentan marcos de referencia clave y políticas ejemplares de instituciones que han abordado estos componentes.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Marcos de referencia:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong><a href="https://dama.org/cpages/dmbok" target="_blank" class="text-blue-700 hover:underline">DAMA-DMBOK:</a></strong> El "Data Management Body of Knowledge" de DAMA Internacional es el estándar global para la gobernanza y gestión de datos a nivel macro (empresarial).</li>
+                    <li><strong>Marcos RDM (Research Data Management):</strong> Organizaciones como <a href="https://www.coar-repositories.org/" target="_blank" class="text-blue-700 hover:underline">COAR</a> (Confederation of Open Access Repositories) y <a href="https://www.rd-alliance.org/" target="_blank" class="text-blue-700 hover:underline">RDA</a> (Research Data Alliance) proveen guías específicas para la gestión de datos en el contexto de la investigación.</li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Políticas institucionales (Ejemplos):</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong><a href="https://datamanagement.hms.harvard.edu/" target="_blank" class="text-blue-700 hover:underline">Universidad de Harvard:</a></strong> Su política de gestión de datos de investigación (RDM) integra roles, tecnología (Dataverse) y directrices claras.</li>
+                    <li><strong><a href="https://www.data.cam.ac.uk/" target="_blank" class="text-blue-700 hover:underline">Universidad de Cambridge:</a></strong> Ofrece una política detallada que vincula los DMPs, los principios FAIR y la preservación a largo plazo.</li>
+                    <li><strong><a href="https://policy.unimelb.edu.au/MPF1242" target="_blank" class="text-blue-700 hover:underline">Universidad de Melbourne (Australia):</a></strong> Su "Política de Gestión de Datos de Investigación" (MPF1242) detalla los principios y responsabilidades para la gestión, almacenamiento, acceso y retención de los datos.</li>
+                </ul>
+                 <h4 class="text-xl font-semibold text-gray-800 mb-2">Plataformas que implementan políticas:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                    <li><strong><a href="https://dmptool.org/" target="_blank" class="text-blue-700 hover:underline">DMPTool</a> / <a href="https://dmponline.dcc.ac.uk/" target="_blank" class="text-blue-700 hover:underline">DMPonline:</a></strong> Herramientas que ayudan a los investigadores a crear DMPs que cumplen con las políticas de las agencias de financiación y la institución.</li>
+                    <li><strong><a href="https://zenodo.org/" target="_blank" class="text-blue-700 hover:underline">Zenodo</a> / <a href="https://dataverse.org/" target="_blank" class="text-blue-700 hover:underline">Dataverse:</a></strong> Repositorios que implementan técnicamente los principios FAIR, la asignación de PIDs y el licenciamiento, ejecutando la visión de la gobernanza.</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer con Licencia y Autoría (Nuevo) -->
+    <footer class="mt-12 mb-8 text-center text-xs text-gray-500">
+        <div class="mb-2">
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="hover:underline">
+                <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" class="mx-auto mb-1" />
+                Esta obra está bajo una <span class="font-semibold">Licencia Creative Commons Atribución-NoComercial 4.0 Internacional</span>.
+            </a>
+        </div>
+        <p>
+            Desarrollado por 
+            <a href="https://enjambrededatos.com" target="_blank" class="font-semibold text-gray-600 hover:underline">Jaider Ochoa Gutiérrez</a> y 
+            <a href="https://www.linkedin.com/in/lina-maria-pino-agudelo-5904bb224/" target="_blank" class="font-semibold text-gray-600 hover:underline">Lina Pino Agudelo</a>,
+            con la asistencia de Google Gemini.
+        </p>
+    </footer>
+
+        <script>
+        // Mantiene un registro de la pestaña activa actualmente
+        let currentTab = 'gobernanza'; // Iniciar con la primera pestaña
+
+        function showTab(tabName) {
+            // Si ya está activa, no hacer nada
+            if (tabName === currentTab) {
+                return;
+            }
+
+            // Ocultar el contenido de la pestaña anterior
+            const oldContent = document.getElementById(currentTab + '-content');
+            if (oldContent) {
+                // Manejar el caso de 'infraestructura' que ahora es 'tecnologia'
+                if (currentTab === 'infraestructura') {
+                    const techContent = document.getElementById('tecnologia-content');
+                    if(techContent) techContent.classList.add('hidden');
+                }
+                oldContent.classList.add('hidden');
+            }
+
+            // Quitar el estilo activo de la pestaña anterior
+            const oldTabButton = document.getElementById(currentTab + '-tab');
+            if (oldTabButton) {
+                // Manejar el caso de 'infraestructura' que ahora es 'tecnologia'
+                if (currentTab === 'infraestructura') {
+                    const techButton = document.getElementById('tecnologia-tab');
+                    if(techButton) techButton.classList.remove('active');
+                }
+                oldTabButton.classList.remove('active');
+            }
+
+            // Mostrar el contenido de la nueva pestaña
+            const newContent = document.getElementById(tabName + '-content');
+            if (newContent) {
+                newContent.classList.remove('hidden');
+            }
+
+            // Añadir el estilo activo a la nueva pestaña
+            const newTabButton = document.getElementById(tabName + '-tab');
+            if (newTabButton) {
+                newTabButton.classList.add('active');
+            }
+
+            // Actualizar la pestaña actual
+            currentTab = tabName;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
