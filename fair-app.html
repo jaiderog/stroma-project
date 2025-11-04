@@ -4,168 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Principios FAIR Interactivos</title>
-    <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Carga de la fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Aplicar la fuente Inter como fuente principal */
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Estilo para el estado activo del botón de pestaña */
+        /* Estilo para el botón de pestaña activa */
         .tab-button.active {
-            transform: scale(1.05);
-            ring-width: 4px;
-            --tw-ring-offset-width: 2px;
-            --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
-            --tw-ring-opacity: 1;
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-width: 4px;
         }
+        /* Colores específicos para cada botón */
+        #findable-tab.active { border-color: #06b6d4; /* cyan-500 */ }
+        #accessible-tab.active { border-color: #f97316; /* orange-500 */ }
+        #interoperable-tab.active { border-color: #2563eb; /* blue-600 */ }
+        #reusable-tab.active { border-color: #22c55e; /* green-500 */ }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
 
-    <!-- Encabezado - Basado en la imagen -->
-    <header class="bg-blue-800 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <!-- Icono SVG simulando el logo -->
-                <svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                </svg>
-                <h1 class="text-xl md:text-2xl font-bold">Gestión de Datos de Investigación</h1>
-            </div>
-            <div class="text-right">
-                <p class="text-sm font-semibold">Principios FAIR en profundidad</p>
-                <p class="text-xs text-gray-300">(8 min)</p>
-            </div>
+    <!-- Encabezado superior --><header class="bg-white text-gray-800 p-4 shadow-md">
+        <div class="container mx-auto max-w-6xl">
+            <h1 class="text-2xl font-bold text-blue-700">Principios FAIR en profundidad</h1>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
-    <main class="container mx-auto max-w-5xl p-4 md:p-8">
+    <!-- Hero Section --><div class="bg-blue-700 text-white shadow-lg py-12 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <svg class="h-16 w-16 text-white mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+            </svg>
+            <h1 class="text-4xl font-bold mb-2">Principios FAIR</h1>
+            <p class="text-xl text-blue-100">Gestión de Datos de Investigación</p>
+        </div>
+    </div>
+
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
         
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Los Principios FAIR</h2>
-        <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-            Los principios FAIR (Findable, Accessible, Interoperable, Reusable) son un conjunto de guías para la gestión de datos científicos que aseguran que sean localizables, accesibles, interoperables y reutilizables.
-        </p>
-
-        <!-- Pestañas Interactivas (Los 4 bloques) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+        <!-- Botones de Pestañas (Los 4 bloques de colores) --><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             
-            <!-- Botón Findable -->
-            <button id="findable-tab" class="tab-button active bg-cyan-500 text-white p-6 rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-300" onclick="showTab('findable')">
-                <span class="text-4xl font-bold">F</span>
-                <h3 class="text-lg font-bold mt-2">Findable</h3>
-                <p class="text-sm">(Localizable)</p>
+            <!-- Findable --><button id="findable-tab" class="tab-button active group bg-cyan-500 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-4 border-transparent" onclick="showTab('findable')">
+                <h3 class="text-5xl font-extrabold mb-2">F</h3>
+                <p class="text-xl font-bold">Findable</p>
+                <p class="text-base font-medium text-cyan-100">(Localizable)</p>
             </button>
 
-            <!-- Botón Accessible -->
-            <button id="accessible-tab" class="tab-button bg-orange-500 text-white p-6 rounded-lg shadow-md hover:bg-orange-600 transition-all duration-300" onclick="showTab('accessible')">
-                <span class="text-4xl font-bold">A</span>
-                <h3 class="text-lg font-bold mt-2">Accessible</h3>
-                <p class="text-sm">(Accesible)</p>
+            <!-- Accessible --><button id="accessible-tab" class="tab-button group bg-orange-500 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-4 border-transparent" onclick="showTab('accessible')">
+                <h3 class="text-5xl font-extrabold mb-2">A</h3>
+                <p class="text-xl font-bold">Accessible</p>
+                <p class="text-base font-medium text-orange-100">(Accesible)</p>
             </button>
 
-            <!-- Botón Interoperable -->
-            <button id="interoperable-tab" class="tab-button bg-blue-500 text-white p-6 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300" onclick="showTab('interoperable')">
-                <span class="text-4xl font-bold">I</span>
-                <h3 class="text-lg font-bold mt-2">Interoperable</h3>
-                <p class="text-sm">(Interoperable)</p>
+            <!-- Interoperable --><button id="interoperable-tab" class="tab-button group bg-blue-600 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-4 border-transparent" onclick="showTab('interoperable')">
+                <h3 class="text-5xl font-extrabold mb-2">I</h3>
+                <p class="text-xl font-bold">Interoperable</p>
+                <p class="text-base font-medium text-blue-100">(Interoperable)</p>
             </button>
-
-            <!-- Botón Reusable -->
-            <button id="reusable-tab" class="tab-button bg-green-600 text-white p-6 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300" onclick="showTab('reusable')">
-                <span class="text-4xl font-bold">R</span>
-                <h3 class="text-lg font-bold mt-2">Reusable</h3>
-                <p class="text-sm">(Reutilizable)</p>
+            
+            <!-- Reusable --><button id="reusable-tab" class="tab-button group bg-green-500 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-4 border-transparent" onclick="showTab('reusable')">
+                <h3 class="text-5xl font-extrabold mb-2">R</h3>
+                <p class="text-xl font-bold">Reusable</p>
+                <p class="text-base font-medium text-green-100">(Reutilizable)</p>
             </button>
         </div>
 
-        <!-- Contenido de las Pestañas -->
-        <div class="mt-6">
+        <!-- Contenido de las Pestañas --><div class="mt-6">
 
-            <!-- Contenido Findable (Visible por defecto) -->
-            <div id="findable-content" class="tab-content bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-cyan-500">
-                <h3 class="text-3xl font-bold text-cyan-600 mb-4">F: Findable (Localizable)</h3>
-                <p class="text-gray-700 mb-4">
-                    Los datos y metadatos deben ser fáciles de encontrar tanto para humanos como para máquinas. Esto es fundamental para cualquier reutilización futura.
-                </p>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
-                    <li><strong>(Meta)datos con PID:</strong> Asignar identificadores persistentes y únicos (PIDs) a los datos, como un DOI (Digital Object Identifier).</li>
-                    <li><strong>Metadatos Ricos:</strong> Describir los datos con un conjunto rico de metadatos que expliquen su contexto, origen y contenido.</li>
-                    <li><strong>Indexación:</strong> Asegurar que los metadatos estén indexados en un repositorio o recurso de búsqueda.</li>
-                </ul>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
-                <div class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
-                    <p class="text-gray-700">Un conjunto de datos sobre el clima publicado en el repositorio Zenodo. Se le asigna automáticamente un <strong>DOI</strong>. Los metadatos incluyen autores (con sus <strong>ORCIDs</strong>), palabras clave, descripción del conjunto de datos y cobertura geográfica.</p>
+            <!-- Contenido Findable --><div id="findable-content" class="tab-content bg-white p-6 md:p-8 rounded-lg shadow-xl border-t-4 border-cyan-500">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">F - Findable (Localizable)</h3>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>F1. Usar identificadores únicos y persistentes:</strong> Asigna DOIs (Digital Object Identifiers) a tus datasets mediante servicios como DataCite o identificadores persistentes como ORCID para autores. Esto garantiza que los datos sean citables y localizables a largo plazo.</p>
+                    <p><strong>F2. Describir datos con metadatos ricos:</strong> Completa información detallada sobre el dataset: título descriptivo, autores, fecha de creación, metodología, área temática, palabras clave y resumen del contenido. Utiliza estándares de metadatos específicos de tu disciplina (como Dublin Core, DataCite Metadata Schema).</p>
+                    <p><strong>F3. Registrar en recursos de búsqueda:</strong> Deposita tus datos en repositorios institucionales o temáticos que sean cosechados por buscadores especializados como OpenAIRE, LA Referencia, o Google Dataset Search.</p>
+                    <p><strong>F4. Vincular metadatos con datos:</strong> Los metadatos deben incluir explícitamente el identificador del dataset que describen, creando una conexión clara entre la descripción y los datos reales.</p>
                 </div>
             </div>
 
-            <!-- Contenido Accessible (Oculto) -->
-            <div id="accessible-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-orange-500">
-                <h3 class="text-3xl font-bold text-orange-600 mb-4">A: Accessible (Accesible)</h3>
-                <p class="text-gray-700 mb-4">
-                    Una vez que el usuario encuentra los datos, necesita saber cómo puede acceder a ellos, posiblemente incluyendo autenticación y autorización.
-                </p>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
-                    <li><strong>Protocolos Estándar:</strong> Los (meta)datos deben ser recuperables por su identificador usando un protocolo de comunicación estándar (ej. HTTPS).</li>
-                    <li><strong>Abierto vs. Cerrado:</strong> El protocolo debe ser abierto, gratuito y universalmente implementable.</li>
-                    <li><strong>Gestión de Acceso:</strong> "Tan abierto como sea posible, tan cerrado como sea necesario". Si los datos no pueden ser abiertos (ej. datos sensibles), las condiciones de acceso deben estar claramente definidas.</li>
-                </ul>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
-                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                    <p class="text-gray-700">Unos datos públicos se pueden descargar directamente mediante un enlace <strong>HTTPS</strong>. Para datos clínicos sensibles, el repositorio explica que se debe <strong>solicitar acceso</strong> a un comité de ética, y el acceso se concede a través de un portal seguro con login.</p>
+            <!-- Contenido Accessible --><div id="accessible-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-t-4 border-orange-500">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">A - Accessible (Accesible)</h3>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>A1. Protocolos estandarizados de comunicación:</strong> Utiliza protocolos abiertos y gratuitos como HTTP, HTTPS, FTP para que los datos puedan ser recuperados mediante sus identificadores. Asegúrate de que el repositorio elegido soporte estos estándares.</p>
+                    <p><strong>A2. Metadatos siempre accesibles:</strong> Incluso si los datos tienen restricciones de acceso (por razones éticas, legales o comerciales), los metadatos deben permanecer públicos y accesibles para que otros investigadores sepan que existen y bajo qué condiciones se pueden obtener.</p>
+                    <p><strong>A3. Documentar condiciones de acceso:</strong> Especifica claramente en los metadatos si los datos son de acceso abierto, requieren registro, tienen embargo temporal o necesitan autorización especial.</p>
                 </div>
             </div>
 
-            <!-- Contenido Interoperable (Oculto) -->
-            <div id="interoperable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-blue-500">
-                <h3 class="text-3xl font-bold text-blue-600 mb-4">I: Interoperable</h3>
-                <p class="text-gray-700 mb-4">
-                    Los datos deben poder combinarse con otros datos e interactuar con aplicaciones o flujos de trabajo para su análisis y procesamiento.
-                </p>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
-                    <li><strong>Formatos Estándar:</strong> Usar formatos de archivo abiertos, bien documentados y preferiblemente no propietarios (ej. CSV, JSON, netCDF).</li>
-                    <li><strong>Vocabularios Controlados:</strong> Usar vocabularios, ontologías o tesauros estándar para describir las variables y metadatos (ej. Dublin Core, Darwin Core).</li>
-                    <li><strong>Referencias Claras:</strong> Los metadatos deben incluir referencias calificadas a otros (meta)datos.</li>
-                </ul>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
-                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <p class="text-gray-700">En lugar de guardar mediciones en un archivo <code>.xlsx</code> con cabeceras ambiguas como "Temp.", se guardan en <strong>CSV</strong>. Un archivo "readme" especifica que la columna "temperatura_celsius" usa unidades de <strong>(ISO 80000-5)</strong> y que las especies se nombran según el vocabulario <strong>Darwin Core (DwC)</strong>.</p>
+            <!-- Contenido Interoperable --><div id="interoperable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-t-4 border-blue-600">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">I - Interoperable (Interoperable)</h3>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>I1. Usar vocabularios y ontologías estándar:</strong> Emplea terminología controlada y ontologías reconocidas en tu disciplina (como MeSH para ciencias de la salud, AGROVOC para agricultura) para describir tus datos.</p>
+                    <p><strong>I2. Formatos de datos abiertos y estándar:</strong> Guarda tus datos en formatos no propietarios y ampliamente utilizados (CSV, XML, JSON, HDF5) en lugar de formatos cerrados como Excel o SPSS cuando sea posible.</p>
+                    <p><strong>I3. Referencias cualificadas:</strong> Cuando tus datos hagan referencia a otros datasets, utiliza identificadores persistentes y describe claramente la naturaleza de la relación.</p>
+                </div>
+            </div>
+            
+            <!-- Contenido Reusable --><div id="reusable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-t-4 border-green-500">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">R - Reusable (Reutilizable)</h3>
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>R1. Licencias claras de uso:</strong> Aplica licencias reconocidas internacionalmente como Creative Commons (CC BY, CC0) que especifiquen claramente cómo pueden reutilizarse los datos.</p>
+                    <p><strong>R2. Proveniencia detallada:</strong> Documenta el origen de los datos, metodología de recolección, procesamiento aplicado, instrumentos utilizados, condiciones experimentales y cualquier transformación realizada. Esto permite que otros investigadores evalúen la calidad y pertinencia para sus propios estudios.</p>
+                    <p><strong>R3. Estándares comunitarios:</strong> Cumple con estándares específicos de tu disciplina para la estructura y documentación de datos, facilitando su integración con otros datasets del mismo campo.</p>
+                    <p><strong>R4. Crear planes de gestión de datos (PGD):</strong> Desde el inicio del proyecto, elabora un plan que contemple cómo se implementarán los principios FAIR, qué repositorio se usará, qué metadatos se generarán y cómo se preservarán los datos a largo plazo.</p>
                 </div>
             </div>
 
-            <!-- Contenido Reusable (Oculto) -->
-            <div id="reusable-content" class="tab-content hidden bg-white p-6 md:p-8 rounded-lg shadow-xl border-l-8 border-green-600">
-                <h3 class="text-3xl font-bold text-green-700 mb-4">R: Reusable (Reutilizable)</h3>
-                <p class="text-gray-700 mb-4">
-                    El objetivo final de FAIR es optimizar la reutilización de los datos. Para ello, los metadatos y los datos deben estar bien descritos para que puedan replicarse o combinarse en diferentes estudios.
-                </p>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Puntos Clave:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
-                    <li><strong>Licencias Claras:</strong> Los datos deben tener una licencia de uso clara y accesible (ej. Creative Commons, MIT).</li>
-                    <li><strong>Documentación y Procedencia:</strong> Proveer documentación detallada sobre cómo se generaron los datos (procedencia o *provenance*), incluyendo el software y los métodos utilizados.</li>
-                    <li><strong>Estándares Comunitarios:</strong> Los (meta)datos cumplen con los estándares relevantes de la comunidad o dominio.</li>
-                </ul>
-                <h4 class="text-xl font-semibold text-gray-800 mb-2">Ejemplo:</h4>
-                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                    <p class="text-gray-700">Un conjunto de imágenes de galaxias se publica con una licencia <strong>Creative Commons CC BY 4.0</strong>, permitiendo su uso por cualquiera siempre que se cite la fuente. Se adjunta un archivo <code>README.md</code> que describe el telescopio utilizado, la configuración de la cámara y los pasos de procesamiento (software y versión) aplicados a cada imagen.</p>
-                </div>
-            </div>
+        </div>
 
+        <!-- Nueva sección de Herramientas Prácticas --><div class="mt-8 bg-white p-6 md:p-8 rounded-lg shadow-xl border-t-4 border-gray-400">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">Herramientas prácticas</h3>
+            <p class="text-gray-700">Existen herramientas gratuitas online que evalúan el grado de cumplimiento FAIR de tus datos, permitiéndote identificar áreas de mejora. Además, repositorios certificados como los que cumplen con CoreTrustSeal o están registrados en re3data facilitan el cumplimiento de estos principios.</p>
         </div>
     </main>
 
+    <!-- Footer --><footer class="mt-12 mb-8 text-center text-xs text-gray-500">
+        <div class="mb-2">
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" class="hover:underline">
+                <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" class="mx-auto mb-1" />
+                Esta obra está bajo una <span class="font-semibold">Licencia Creative Commons Atribución-NoComercial 4.0 Internacional</span>.
+            </a>
+        </div>
+        <p>
+            Desarrollado por 
+            <a href="https://enjambredatos.com" target="_blank" class="font-semibold text-gray-600 hover:underline">Jaider Ochoa Gutiérrez</a> y 
+            <a href="https://www.linkedin.com/in/lina-maria-pino-agudelo-5904bb224/" target="_blank" class="font-semibold text-gray-600 hover:underline">Lina Pino Agudelo</a>,
+            con la asistencia de Google Gemini.
+        </p>
+    </footer>
+
     <script>
-        // Mantiene un registro de la pestaña activa actualmente
-        let currentTab = 'findable';
+        let currentTab = 'findable'; // Iniciar con la primera pestaña
 
         function showTab(tabName) {
             // Si ya está activa, no hacer nada
@@ -183,6 +154,7 @@
             const oldTabButton = document.getElementById(currentTab + '-tab');
             if (oldTabButton) {
                 oldTabButton.classList.remove('active');
+                oldTabButton.classList.add('border-transparent'); // Restaurar borde transparente
             }
 
             // Mostrar el contenido de la nueva pestaña
@@ -195,12 +167,19 @@
             const newTabButton = document.getElementById(tabName + '-tab');
             if (newTabButton) {
                 newTabButton.classList.add('active');
+                newTabButton.classList.remove('border-transparent'); // Quitar borde transparente para que active el color
             }
 
             // Actualizar la pestaña actual
             currentTab = tabName;
         }
+
+        // Llamar a showTab una vez para inicializar el estado del primer botón
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('findable'); 
+        });
     </script>
 
 </body>
 </html>
+
