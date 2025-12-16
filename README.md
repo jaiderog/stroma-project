@@ -1,1 +1,2 @@
-# ReDaGo-Framework
+# Project Stroma
+# Research Data Governance Framework
