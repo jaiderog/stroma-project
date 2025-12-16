@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco de Gobernanza de Datos de Investigación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #0a7d8c;
+            --gold: #d4af37;
+            --text: #1a1a1a;
+            --text-light: #4a5568;
+            --bg: #fafbfc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d4a6f 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--card);
+            border-bottom: 2px solid var(--border);
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+
+        .nav-inner::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .nav-inner::-webkit-scrollbar-thumb {
+            background: var(--accent);
+        }
+
+        .nav-btn {
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-light);
+            background: none;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            color: var(--accent);
+            background: rgba(0,0,0,0.02);
+        }
+
+        .nav-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .component {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .component-header {
+            background: linear-gradient(135deg, var(--primary), #2d4a6f);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .component-num {
+            font-size: 2rem;
+            font-weight: 700;
+            opacity: 0.4;
+        }
+
+        .component-title h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .component-title p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .component-body {
+            padding: 1.5rem;
+        }
+
+        .component-body p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .embed {
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .embed-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .embed-header h3 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .embed-header a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .embed-frame {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        .fair-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .fair-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--accent);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .fair-letter {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .fair-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .fair-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .fair-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .info-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .info-box p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer p, .footer a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom a {
+            color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 2rem 1.5rem; }
+            .container { padding: 1.5rem; }
+            .nav-btn { padding: 0.875rem 1rem; font-size: 0.9rem; }
+            .embed-frame { height: 500px; }
+            .component-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Marco de Gobernanza de Datos de Investigación</h1>
+        <p>Herramienta estratégica para instituciones de investigación y universidades</p>
+        <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.85;">
+            Jaider Ochoa Gutiérrez & Lina María Pino Agudelo | Universidad de Antioquia
+        </p>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <button class="nav-btn active" data-section="inicio">Inicio</button>
+            <button class="nav-btn" data-section="componentes">Componentes</button>
+            <button class="nav-btn" data-section="fair">Principios FAIR</button>
+            <button class="nav-btn" data-section="recursos">Recursos</button>
+            <button class="nav-btn" data-section="autores">Autores</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section active" id="inicio">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>¿Qué es?</h3>
+                    <p>Marco integral para transformar los datos de investigación en activos estratégicos institucionales.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>¿Para quién?</h3>
+                    <p>Vice-rectores, directores de biblioteca, gestores de investigación y equipos de TI.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Enfoque</h3>
+                    <p>Combina fundamentos teóricos con herramientas prácticas y rutas de implementación.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>¿Por qué es necesario?</h3>
+                <p>Los datos de investigación representan activos de valor incalculable, pero frecuentemente se pierden o no pueden reutilizarse. Un marco de gobernanza establece sistemas que posicionan los datos como activos estratégicos, maximizan el retorno de inversión, aseguran el cumplimiento normativo y habilitan nuevas capacidades analíticas.</p>
+            </div>
+
+            <div class="embed">
+                <div class="embed-header">
+                    <h3>🏗️ Framework de Gobernanza de Datos - Herramienta de IA</h3>
+                </div>
+                <div style="padding: 3rem; text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <svg style="width: 80px; height: 80px; margin-bottom: 1.5rem; opacity: 0.7;" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary);">Framework Interactivo con Inteligencia Artificial</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;">
+                            Herramienta de IA generativa que responde preguntas específicas sobre gobernanza de datos, proporciona recomendaciones personalizadas y genera documentación adaptada a tu contexto institucional
+                        </p>
+                        <a href="https://claude.ai/public/artifacts/44cd6122-1163-41ee-b531-de245b4f051b" target="_blank" 
+                           style="display: inline-block; background: linear-gradient(135deg, var(--accent), #0d5f6d); color: white; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(10, 125, 140, 0.3); transition: all 0.3s;">
+                            Abrir Framework de IA →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="embed">
+                <div class="embed-header">
+                    <h3>📊 Presentación del Workshop</h3>
+                </div>
+                <div style="padding: 3rem; text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <svg style="width: 80px; height: 80px; margin-bottom: 1.5rem; opacity: 0.7;" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary);">Presentación: Gobernanza y Políticas de Datos de Investigación</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;">
+                            Visualiza la presentación completa del taller sobre gobernanza estratégica de datos de investigación
+                        </p>
+                        <a href="https://www.canva.com/design/DAG2XAxBsws/Xa5bEn-schsAwDbU9Q1tdw/view" target="_blank" 
+                           style="display: inline-block; background: linear-gradient(135deg, var(--accent), #0d5f6d); color: white; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(10, 125, 140, 0.3); transition: all 0.3s;">
+                            Abrir Presentación en Canva →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="componentes">
+            <div class="info-box" style="margin-bottom: 2rem;">
+                <h3>Seis Componentes Interdependientes</h3>
+                <p>El marco se estructura en seis pilares que deben desarrollarse de manera integrada. Cada componente aborda dimensiones específicas pero mantiene conexiones críticas con los demás.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">01</span>
+                        <div class="component-title">
+                            <h3>Gobernanza</h3>
+                            <p>Estrategia y autoridad</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Define el marco de autoridad y procesos para la toma de decisiones. Establece <strong>por qué</strong> y <strong>quién</strong> supervisa el ciclo de vida de los datos mediante comités, roles (Data Owners, Data Stewards) y fines institucionales claros.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">02</span>
+                        <div class="component-title">
+                            <h3>Tecnología</h3>
+                            <p>Arquitectura y ciclo de vida</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Establece estándares e infraestructura para la gestión técnica: repositorios certificados, DMPs, metadatos interoperables (FAIR), preservación digital y adopción de tecnologías emergentes.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">03</span>
+                        <div class="component-title">
+                            <h3>Cultura y Capacitación</h3>
+                            <p>Adopción e incentivos</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Asegura que el personal comprenda, valore y cumpla las políticas mediante capacitación continua (data literacy), servicios de soporte especializados e incentivos formales integrados en evaluación de carrera.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">04</span>
+                        <div class="component-title">
+                            <h3>Ética y Legal</h3>
+                            <p>Cumplimiento y riesgo</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Define el cumplimiento normativo (GDPR, regulaciones sectoriales), clasificación de datos sensibles, protocolos de anonimización y directrices sobre propiedad intelectual y licenciamiento.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">05</span>
+                        <div class="component-title">
+                            <h3>Sostenibilidad</h3>
+                            <p>Recursos y financiación</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Asegura viabilidad a largo plazo mediante modelos de financiación claros, dotación de recursos humanos especializados y presupuesto recurrente para infraestructura y preservación.</p>
+                    </div>
+                </div>
+
+                <div class="component">
+                    <div class="component-header">
+                        <span class="component-num">06</span>
+                        <div class="component-title">
+                            <h3>Monitoreo y Evaluación</h3>
+                            <p>Seguimiento y mejora</p>
+                        </div>
+                    </div>
+                    <div class="component-body">
+                        <p>Establece mecanismos de auditoría, KPIs (adopción de repositorios, datasets FAIR, incidentes) y ciclos de revisión periódica de la política para adaptación continua.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="embed" style="margin-top: 2rem;">
+                <div class="embed-header">
+                    <h3>🔧 Explorar Componentes en Detalle</h3>
+                </div>
+                <div style="padding: 3rem; text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <svg style="width: 80px; height: 80px; margin-bottom: 1.5rem; opacity: 0.7;" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                        </svg>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary);">Herramienta Interactiva de Componentes</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;">
+                            Explora en detalle cada uno de los seis componentes de gobernanza con ejemplos, perspectivas estratégicas y referencias institucionales
+                        </p>
+                        <a href="https://enjambrededatos.com/redago/research_gobData_policy.html" target="_blank" 
+                           style="display: inline-block; background: linear-gradient(135deg, var(--accent), #0d5f6d); color: white; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(10, 125, 140, 0.3); transition: all 0.3s;">
+                            Abrir Herramienta Interactiva →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="fair">
+            <div class="info-box">
+                <h3>Principios FAIR</h3>
+                <p>Los principios FAIR (Findable, Accessible, Interoperable, Reusable) son el estándar internacional para la gestión de datos de investigación. Guían el diseño de infraestructuras, políticas y prácticas que maximizan el valor de los datos científicos.</p>
+            </div>
+
+            <div class="fair-grid">
+                <div class="fair-card">
+                    <div class="fair-letter">F</div>
+                    <h3>Findable</h3>
+                    <p class="subtitle">Localizable</p>
+                    <p>Los datos deben tener identificadores únicos y persistentes (DOIs), metadatos ricos y descriptivos, estar registrados en buscadores especializados, y vincular claramente metadatos con datos.</p>
+                </div>
+
+                <div class="fair-card">
+                    <div class="fair-letter">A</div>
+                    <h3>Accessible</h3>
+                    <p class="subtitle">Accesible</p>
+                    <p>Utilizar protocolos estandarizados abiertos (HTTP/HTTPS), mantener metadatos públicos incluso con datos restringidos, y documentar claramente condiciones de acceso.</p>
+                </div>
+
+                <div class="fair-card">
+                    <div class="fair-letter">I</div>
+                    <h3>Interoperable</h3>
+                    <p class="subtitle">Interoperable</p>
+                    <p>Emplear vocabularios y ontologías estándar (MeSH, AGROVOC), usar formatos abiertos (CSV, XML, JSON), y referenciar otros datasets con identificadores persistentes.</p>
+                </div>
+
+                <div class="fair-card">
+                    <div class="fair-letter">R</div>
+                    <h3>Reusable</h3>
+                    <p class="subtitle">Reutilizable</p>
+                    <p>Aplicar licencias claras (Creative Commons), documentar proveniencia detallada (origen, metodología, procesamiento), y crear planes de gestión de datos (DMPs).</p>
+                </div>
+            </div>
+
+            <div class="embed" style="margin-top: 2rem;">
+                <div class="embed-header">
+                    <h3>🔬 Explorar Principios FAIR en Detalle</h3>
+                </div>
+                <div style="padding: 3rem; text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <svg style="width: 80px; height: 80px; margin-bottom: 1.5rem; opacity: 0.7;" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary);">Principios FAIR Interactivos</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;">
+                            Aplicación interactiva con guía detallada para implementar los principios FAIR (Findable, Accessible, Interoperable, Reusable)
+                        </p>
+                        <a href="https://enjambrededatos.com/redago/fair-app.html" target="_blank" 
+                           style="display: inline-block; background: linear-gradient(135deg, var(--accent), #0d5f6d); color: white; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(10, 125, 140, 0.3); transition: all 0.3s;">
+                            Abrir Aplicación FAIR →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="autores">
+            <div class="info-box">
+                <h3>Sobre los Autores</h3>
+                <p>Equipo interdisciplinario especializado en gestión de información científica, ciencia de datos e inteligencia artificial aplicada a la investigación.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <!-- Jaider Ochoa Gutiérrez -->
+                <div class="card" style="padding: 2.5rem;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--primary)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: 700;">JO</div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Jaider Ochoa Gutiérrez</h3>
+                        <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">Investigador</p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Perfil Profesional y Académico</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            <strong>Profesor asociado e investigador</strong><br>
+                            Escuela Interamericana de Bibliotecología<br>
+                            Universidad de Antioquia
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-top: 0.5rem;">
+                            <strong>Candidato a doctor en ingeniería</strong><br>
+                            Universidad EIA (énfasis en inteligencia artificial)
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-top: 0.5rem;">
+                            <strong>Magíster en gestión de ciencia, tecnología e innovación</strong><br>
+                            Universidad de Antioquia
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-top: 0.5rem;">
+                            <strong>Bibliotecólogo</strong><br>
+                            Universidad de Antioquia
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Trayectoria y Enfoque</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            Su investigación actual se centra en el desarrollo de sistemas de información con IA para la evaluación 
+                            de la calidad de la evidencia y la toma de decisiones en contextos científicos y tecnológicos. 
+                            En este marco, desarrolla sistemas multi-agente y agentic RAG (Retrieval-Augmented Generation). 
+                            Tiene una preocupación latente por el valor de la ciencia abierta y su sostenibilidad, además de 
+                            la gobernanza de datos de investigación.
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Áreas de Investigación</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            • Sistemas de información con IA<br>
+                            • Sistemas multi-agente y agentic RAG<br>
+                            • Evaluación de calidad de evidencia<br>
+                            • Health Technology Assessment (HTA)<br>
+                            • Ciencia abierta y sostenibilidad<br>
+                            • Gobernanza de datos de investigación
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border);">
+                        <a href="https://flow.page/jaiderog" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                            </svg>
+                            Perfil
+                        </a>
+                        <a href="https://enjambrededatos.com" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Sitio Web
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=GECEUhMAAAAJ" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L3 9h3v11h6v-7h3v7h6V9h3L12 2z"/>
+                            </svg>
+                            Google Scholar
+                        </a>
+                        <a href="https://orcid.org/0000-0002-5492-3922" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416z"/>
+                            </svg>
+                            ORCID
+                        </a>
+                        <a href="https://www.linkedin.com/in/jaiderog/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Lina Pino Agudelo -->
+                <div class="card" style="padding: 2.5rem;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #b8941f); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: 700;">LP</div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Lina María Pino Agudelo</h3>
+                        <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">Investigadora</p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Perfil Profesional y Académico</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            <strong>Cogestora de Datos de Investigación</strong><br>
+                            Sistema de Bibliotecas<br>
+                            Universidad de Antioquia
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-top: 0.5rem;">
+                            <strong>Magíster en Ciencia de la Información</strong><br>
+                            Universidad de Antioquia
+                        </p>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem; margin-top: 0.5rem;">
+                            <strong>Archivista</strong><br>
+                            Universidad de Antioquia
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Trayectoria y Enfoque</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            Su trayectoria se ha enfocado en el diseño e implementación de servicios bibliotecarios 
+                            para el apoyo y fortalecimiento de la investigación. Actualmente su preocupación se orienta 
+                            a la promoción de la ciencia abierta y la preservación digital de la producción académica, 
+                            por lo que ha liderado diversas acciones para la implementación del Sistema de Gestión de 
+                            Datos de Investigación.
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 0.75rem;">Áreas de Investigación</h4>
+                        <p style="color: var(--text-light); line-height: 1.7; font-size: 0.95rem;">
+                            • Gestión de Datos de Investigación<br>
+                            • Servicios Bibliotecarios Especializados<br>
+                            • Ciencia Abierta<br>
+                            • Preservación Digital<br>
+                            • Sistemas de Información Científica<br>
+                            • Metadatos y Estándares
+                        </p>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border);">
+                        <a href="https://www.linkedin.com/in/lina-maria-pino-agudelo-5904bb224/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://orcid.org/0009-0006-5814-9563" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416z"/>
+                            </svg>
+                            ORCID
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; border-left: 4px solid var(--gold);">
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">Colaboración y Agradecimientos</h3>
+                <p style="color: var(--text-light); line-height: 1.7;">
+                    Este marco fue desarrollado en el contexto del <strong>Congreso Iberoamericano de Ciencia Abierta</strong> 
+                    con el apoyo de la <strong>Universidad de Antioquia</strong>, específicamente la 
+                    <strong>Escuela Interamericana de Bibliotecología</strong>, el <strong>Sistema de Bibliotecas</strong> 
+                    y la <strong>Vicerrectoría de Investigación</strong>.
+                </p>
+                <p style="color: var(--text-light); line-height: 1.7; margin-top: 1rem;">
+                    <strong>Desarrollo tecnológico:</strong> Claude (Anthropic) - Asistente de inteligencia artificial
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="recursos">
+            <div class="info-box">
+                <h3>Recursos Internacionales</h3>
+                <p>Marcos de referencia consolidados, políticas institucionales ejemplares y plataformas para implementar gobernanza de datos de investigación.</p>
+            </div>
+
+            <h2 style="margin: 2rem 0 1rem; font-size: 1.8rem;">Marcos de Referencia</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>DAMA-DMBOK</h3>
+                    <p>Estándar global para gobernanza y gestión de datos a nivel empresarial.</p>
+                    <p style="margin-top: 1rem;"><a href="https://dama.org/cpages/dmbok" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver recurso →</a></p>
+                </div>
+                <div class="card">
+                    <h3>COAR</h3>
+                    <p>Confederation of Open Access Repositories. Guías para repositorios de acceso abierto.</p>
+                    <p style="margin-top: 1rem;"><a href="https://www.coar-repositories.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver recurso →</a></p>
+                </div>
+                <div class="card">
+                    <h3>RDA</h3>
+                    <p>Research Data Alliance. Recomendaciones y estándares para compartición de datos.</p>
+                    <p style="margin-top: 1rem;"><a href="https://www.rd-alliance.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver recurso →</a></p>
+                </div>
+            </div>
+
+            <h2 style="margin: 2rem 0 1rem; font-size: 1.8rem;">Políticas Ejemplares</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Universidad de Harvard</h3>
+                    <p>Política integral de RDM con roles definidos, Dataverse y plantillas de DMPs.</p>
+                    <p style="margin-top: 1rem;"><a href="https://datamanagement.hms.harvard.edu/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver política →</a></p>
+                </div>
+                <div class="card">
+                    <h3>Universidad de Cambridge</h3>
+                    <p>Política que vincula DMPs, principios FAIR y preservación a largo plazo.</p>
+                    <p style="margin-top: 1rem;"><a href="https://www.data.cam.ac.uk/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver política →</a></p>
+                </div>
+                <div class="card">
+                    <h3>Universidad de Melbourne</h3>
+                    <p>Política MPF1242 con framework de clasificación y procedimientos de cumplimiento.</p>
+                    <p style="margin-top: 1rem;"><a href="https://policy.unimelb.edu.au/MPF1242" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver política →</a></p>
+                </div>
+            </div>
+
+            <h2 style="margin: 2rem 0 1rem; font-size: 1.8rem;">Plataformas y Herramientas</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>DMPTool / DMPonline</h3>
+                    <p>Herramientas para crear Planes de Gestión de Datos con plantillas predefinidas.</p>
+                    <p style="margin-top: 1rem;"><a href="https://dmptool.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">DMPTool →</a> | <a href="https://dmponline.dcc.ac.uk/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">DMPonline →</a></p>
+                </div>
+                <div class="card">
+                    <h3>Zenodo / Dataverse</h3>
+                    <p>Repositorios que implementan principios FAIR con DOIs y licenciamiento.</p>
+                    <p style="margin-top: 1rem;"><a href="https://zenodo.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Zenodo →</a> | <a href="https://dataverse.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Dataverse →</a></p>
+                </div>
+                <div class="card">
+                    <h3>re3data</h3>
+                    <p>Registro global de repositorios de datos por disciplina y características técnicas.</p>
+                    <p style="margin-top: 1rem;"><a href="https://www.re3data.org/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">Ver registro →</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>Desarrollado por</h4>
+                <p><strong><a href="https://enjambrededatos.com" target="_blank">Jaider Ochoa Gutiérrez</a></strong></p>
+                <p>Profesor e Investigador</p>
+                <p>Escuela Interamericana de Bibliotecología</p>
+                <p>Universidad de Antioquia</p>
+                <p style="margin-top: 1rem;"><strong><a href="https://www.linkedin.com/in/lina-maria-pino-agudelo-5904bb224/" target="_blank">Lina María Pino Agudelo</a></strong></p>
+                <p>Investigadora</p>
+                <p>Cogestora de Datos de Investigación</p>
+                <p>Sistema de Bibliotecas - Universidad de Antioquia</p>
+            </div>
+            <div>
+                <h4>Recursos</h4>
+                <p><a href="https://enjambrededatos.com/redago/research_gobData_policy.html" target="_blank">Componentes de Gobernanza</a></p>
+                <p><a href="https://enjambrededatos.com/redago/fair-app.html" target="_blank">Principios FAIR</a></p>
+                <p><a href="https://www.canva.com/design/DAG2XAxBsws/view" target="_blank">Presentación del Taller</a></p>
+            </div>
+            <div>
+                <h4>Licencia</h4>
+                <p><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
+                    <img src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="CC BY-NC 4.0" style="margin-top: 0.5rem;">
+                </a></p>
+                <p style="margin-top: 0.5rem;">Creative Commons Atribución-NoComercial 4.0 Internacional</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Marco de Gobernanza de Datos de Investigación</p>
+            <p style="margin-top: 0.5rem;">Desarrollado con <a href="https://www.anthropic.com" target="_blank">Claude (Anthropic)</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.section;
+                navBtns.forEach(b => b.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(target).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
